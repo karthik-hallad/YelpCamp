@@ -1,0 +1,16 @@
+<h1> Edit a campground</h1>
+<form action="/campgrounds/<%= campground._id %>?_method=PATCH" method="POST">
+  <div>
+    <label for="name">Name of the Campground</label>
+    <input type="text" id="name" name="Campground[name] " value=<%=campground.name %>>
+  </div>
+  <div>
+    <label for="location">Location of the campground</label>
+    <input type="text" id="location" name="Campground[location]" value=<%=campground.location %>>
+  </div>
+  <label for="description">Description of the campground</label><br>
+  <textarea id="description" name="Campground[description]" cols="50" rows="10"
+    placeholder="Enter description here"><%= campground.description %> </textarea>
+  <br>
+  <button type="submit">Create Campground</button>
+</form>
