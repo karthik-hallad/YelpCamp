@@ -32,7 +32,9 @@ app.get('/campgrounds', async (req, res, next) =>{
   res.render('campgrounds/index.ejs',{Campgrounds})
 })
 
-
+app.get('/',(req, res)=>{
+  res.render('home');
+})
 
 
 app.get('/campgrounds/new',async (req, res)=>{

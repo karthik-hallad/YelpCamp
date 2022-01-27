@@ -1,16 +1,37 @@
-<h1> Edit a campground</h1>
-<form action="/campgrounds/<%= campground._id %>?_method=PATCH" method="POST">
-  <div>
-    <label for="name">Name of the Campground</label>
-    <input type="text" id="name" name="Campground[name] " value=<%=campground.name %>>
-  </div>
-  <div>
-    <label for="location">Location of the campground</label>
-    <input type="text" id="location" name="Campground[location]" value=<%=campground.location %>>
-  </div>
-  <label for="description">Description of the campground</label><br>
-  <textarea id="description" name="Campground[description]" cols="50" rows="10"
-    placeholder="Enter description here"><%= campground.description %> </textarea>
-  <br>
-  <button type="submit">Create Campground</button>
-</form>
+<% layout("../layouts/boilerplate") %>
+  <h1 class="display-3 text-center"> Edit <%= campground._id %>
+  </h1>
+  <form action="/campgrounds/<%= campground._id %>?_method=PATCH" method="POST">
+    <div class="container w-75 m-auto">
+      <div class="form-group">
+        <label for="name" class=>Name of the Campground</label>
+        <input type="text" class="form-control" id="name" name="Campground[name]" value=<%=campground.name %>>
+      </div>
+      <div class="form-group">
+        <label for="location">Location of the campground</label>
+        <input type="text" id="location" class="form-control" name="Campground[location]" value=<%=campground.location
+          %>>
+      </div class="form-group">
+      <div class="form-group">
+        <label for="price">Cost of the campground</label>
+        <div class="input-group-prepend">
+          <span class="input-group-text">$</span>
+          <input type="text" id="price" class="form-control" name="Campground[price]" value=<%=campground.price %>>
+          <div class="input-group-append">
+            <span class="input-group-text">.00</span>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="image">Image URL of the campground</label>
+        <input type="text" id="image" class="form-control" name="Campground[image]" value=<%=campground.image %>>
+      </div>
+      <div class="form-group">
+        <label for="description">Description of the campground</label><br>
+        <textarea id="description" class="form-control" name="Campground[description]" cols="50" rows="5"
+          placeholder="Enter description here"><%= campground.description %></textarea>
+        <br>
+        <button type="submit" class="btn btn-success btn-lg">Edit Campground</button>
+      </div>
+    </div>
+  </form>
