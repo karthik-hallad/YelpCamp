@@ -1,36 +1,66 @@
 <% layout("../layouts/boilerplate") %>
 
   <h1 class="display-2 text-center"> Create a new campground</h1>
-  <form action="/campgrounds" method="POST">
+  <form action="/campgrounds" method="POST" class="needs-validation" novalidate>
     <div class="container w-75 m-auto">
       <div class="form-group">
         <label for="name" class=>Name of the Campground</label>
-        <input type="text" class="form-control" id="name" name="Campground[name]">
+        <input type="text" class="form-control" id="name" name="Campground[name]" required>
+        <div class="valid-feedback">
+          Looks good!
+        </div>
+        <div class="invalid-feedback">
+          Please provide a valid name.
+        </div>
       </div>
       <div class="form-group">
         <label for="location">Location of the campground</label>
-        <input type="text" id="location" class="form-control" name="Campground[location]">
+        <input type="text" id="location" class="form-control" name="Campground[location]" required>
+        <div class="valid-feedback">
+          Looks good!
+        </div>
+        <div class="invalid-feedback">
+          Please provide a location.
+        </div>
       </div class="form-group">
       <div class="form-group">
         <label for="price">Cost of the campground</label>
         <div class="input-group-prepend">
           <span class="input-group-text">$</span>
-          <input type="text" id="price" class="form-control" name="Campground[price]">
+          <input type="text" id="price" class="form-control" name="Campground[price]" required>
           <div class="input-group-append">
             <span class="input-group-text">.00</span>
+          </div>
+          <div class="valid-feedback">
+            Looks good!
+          </div>
+          <div class="invalid-feedback">
+            Please provide a valid Price.
           </div>
         </div>
       </div>
       <div class="form-group">
         <label for="image">Image URL of the campground</label>
-        <input type="text" id="image" class="form-control" name="Campground[image]">
+        <input type="text" id="image" class="form-control" name="Campground[image]" required>
+        <div class="valid-feedback">
+          Looks good!
+        </div>
+        <div class="invalid-feedback">
+          Please provide a valid URL.
+        </div>
       </div>
       <div class="form-group">
         <label for="description">Description of the campground</label><br>
         <textarea id="description" class="form-control" name="Campground[description]" cols="50" rows="5"
-          placeholder="Enter description here"></textarea>
-        <br>
-        <button type="submit" class="btn btn-success btn-lg">Create Campground</button>
+          placeholder="Enter description here" required></textarea>
+        <div class="valid-feedback">
+          Looks good!
+        </div>
+        <div class="invalid-feedback">
+          Please provide a valid Description.
+        </div>
       </div>
+      <br>
+      <button type="submit" class="btn btn-success btn-lg">Create Campground</button>
     </div>
   </form>

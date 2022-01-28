@@ -46,10 +46,34 @@
     integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
     crossorigin="anonymous"></script>
 </body>
+<div class=" footer navbar-fixed-bottom">
+  <footer style="height:50px;"
+    class="center bg-dark text-muted  absolute-bottom  d-flex align-items-center justify-content-center  ">
+    YelpCamp &copy;
+  </footer>
+</div>
 
-<footer style="height:50px;"
-  class="center bg-dark text-muted  absolute-bottom  d-flex align-items-center justify-content-center ">
-  YelpCamp &copy;
-</footer>
+
+<script>
+  // Example starter JavaScript for disabling form submissions if there are invalid fields
+  (function () {
+    'use strict';
+    window.addEventListener('load', function () {
+      // Fetch all the forms we want to apply custom Bootstrap validation styles to
+      var forms = document.getElementsByClassName('needs-validation');
+      // Loop over them and prevent submission
+      var validation = Array.prototype.filter.call(forms, function (form) {
+        form.addEventListener('submit', function (event) {
+          if (form.checkValidity() === false) {
+            event.preventDefault();
+            event.stopPropagation();
+          }
+          form.classList.add('was-validated');
+        }, false);
+      });
+    }, false);
+  })();
+</script>
+
 
 </html>
