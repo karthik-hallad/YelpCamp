@@ -30,9 +30,10 @@ let seed= async()=>{
     location=`${location.city} , ${location.state}`;
     let name = `${seeder(descriptors)} ${seeder(places)}`
     let price = Math.floor(Math.random() * 20) + 10;
+    let author = "61f506f3975196cc7b7b1eb8";
     let description = 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti omnis facere dolorem consequatur nemo. Quas sit corporis autem minima a doloribus illo fugit possimus sequi! Quae laboriosam porro odio fuga?Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti omnis facere dolorem consequatur nemo. Quas sit corporis autem minima a doloribus illo fugit possimus sequi! Quae laboriosam porro odio fuga?'
     let image = 'https://source.unsplash.com/collection/483251'
-    let campground = new Campground({name : name , location:location , image , description , price});
+    let campground = new Campground({name : name , location:location , image , description , price,  author});
     await campground.save();
 }
 }

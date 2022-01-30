@@ -8,6 +8,10 @@ const campgrounds= new Schema({
   description : String,
   image : String,
   price : Number,
+  author :{
+    type : Schema.Types.ObjectId,
+    ref : 'User'
+  },
   reviews : [
     {
       type: Schema.Types.ObjectId,
@@ -22,9 +26,6 @@ campgrounds.post('findOneAndDelete',async (doc)=>{
       _id : { $in: doc.reviews}
     })
     console.log(doc.reviews)
-  }
-  else{
-    next()
   }
 })
 
