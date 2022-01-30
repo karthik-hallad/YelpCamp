@@ -9,7 +9,7 @@ const session = require('express-session');
 const flash = require('connect-flash')
 const passport = require('passport')
 const LocalStrategy = require('passport-local')
-
+const multer  = require('multer')
 const ExpressError = require('./utils/ExpressError')
 
 app.set('view engine', 'ejs');

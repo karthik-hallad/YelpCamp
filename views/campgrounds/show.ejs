@@ -1,4 +1,5 @@
 <% layout("../layouts/boilerplate") %>
+  <link href="/css/stars.css" rel="stylesheet" type="text/css">
   <div class="row mt-3 mb-3">
     <div class="col">
       <div class="card">
@@ -46,12 +47,21 @@
             <h4 class="card-header">Add a Review</h4>
             <div class="card-body">
               <div class="form-group">
-                <label for="customRange3">
-                  <h5 class="card-title">Rating:-</h5>
-                </label>
-                <input type="range" class="custom-range" min="0" max="5" step="0.5" name="Review[rating]"
-                  id="customRange3" oninput="this.nextElementSibling.value = this.value">
-                <output class="mb-3">2.5</output>
+                <fieldset class="starability-coinFlip">
+                  <legend>Rating:</legend>
+                  <input type="radio" id="no-rate" class="input-no-rate" name="Review[rating]" value="0" checked
+                    aria-label="No rating." />
+                  <input type="radio" id="first-rate1" name="Review[rating]" value="1" />
+                  <label for="first-rate1" title="Terrible">1 star</label>
+                  <input type="radio" id="first-rate2" name="Review[rating]" value="2" />
+                  <label for="first-rate2" title="Not good">2 stars</label>
+                  <input type="radio" id="first-rate3" name="Review[rating]" value="3" />
+                  <label for="first-rate3" title="Average">3 stars</label>
+                  <input type="radio" id="first-rate4" name="Review[rating]" value="4" />
+                  <label for="first-rate4" title="Very good">4 stars</label>
+                  <input type="radio" id="first-rate5" name="Review[rating]" value="5" />
+                  <label for="first-rate5" title="Amazing">5 stars</label>
+                </fieldset>
               </div>
               <div class="form-group">
                 <h5 class="card-title">
@@ -79,9 +89,13 @@
             </h4>
             <% for(let review of campground.reviews) { %>
               <div class="card-body">
-                <h6 class="card-title">Rating:- <%= review.rating %>
+                <h6 class="card-title">Rating:-
                 </h6>
-                <p class="card-text">Review:- <%= review.body %>
+                <p class="starability-result" data-rating="<%= review.rating %>">
+                  Rated: <%= review.rating %> stars
+                </p>
+                <p class="card-text">
+                  <%= review.body %>
                 </p>
                 <h6 class="card-subtitle mb-2 text-muted">By <%= review.author.username %>
                 </h6>
