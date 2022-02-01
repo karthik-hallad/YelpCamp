@@ -1,2 +1,4 @@
 # YelpCamp
-### A fully functional website to view campgrounds in SEA
+### A fully functional website to view campgrounds in NA
+
+### Dependencies
