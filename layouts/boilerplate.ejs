@@ -18,18 +18,21 @@
 
 <body>
   <%- include('../partials/nav') %>
-    <div class="container">
+  <div class="container">
+    
       <%- include('../partials/flash') %>
         <%- body %>
     </div>
+  </div>
 
 </body>
-<div class=" footer navbar-fixed-bottom">
-  <footer style="height:50px;"
-    class="center bg-dark text-muted  absolute-bottom  d-flex align-items-center justify-content-center  ">
-    YelpCamp &copy;
-  </footer>
-</div>
+
+   
+<footer class="footer bg-dark py-3 mt-auto text-center ">
+    <div class="container">
+        <span class="text-muted">&copy; YelpCamp 2022</span>
+    </div>
+</footer>
 
 <script src="https://cdn.jsdelivr.net/npm/bs-custom-file-input/dist/bs-custom-file-input.js"></script>
 <script src="/js/style.js"></script>

@@ -58,6 +58,28 @@ let imageCollection = [
     url: 'https://res.cloudinary.com/ronn1230/image/upload/v1643694338/Yelp-Camp/scott-goodwill-y8Ngwq34_Ak-unsplash_pqpmyn.jpg',
     filename: 'Yelp-Camp/doqdnfzhqay1rvaxehne',
   },
+  {
+    url: 'https://res.cloudinary.com/ronn1230/image/upload/v1643721865/Yelp-Camp/paxson-woelber-1yOkW4UwYbA-unsplash_ajfbeh.jpg',
+    filename: 'Yelp-Camp/doqdnfzhqay1rvaxehne',
+  },  {
+    url: 'https://res.cloudinary.com/ronn1230/image/upload/v1643721865/Yelp-Camp/markus-spiske-8ZxEGS163NE-unsplash_dpwum0.jpg',
+    filename: 'Yelp-Camp/doqdnfzhqay1rvaxehne',
+  },  {
+    url: 'https://res.cloudinary.com/ronn1230/image/upload/v1643721865/Yelp-Camp/florida-guidebook-com-UJ8ruhgID7o-unsplash_zud7fl.jpg',
+    filename: 'Yelp-Camp/doqdnfzhqay1rvaxehne',
+  },  {
+    url: 'https://res.cloudinary.com/ronn1230/image/upload/v1643721866/Yelp-Camp/wei-pan-Ta0A1miYZKc-unsplash_g4qqr0.jpg',
+    filename: 'Yelp-Camp/doqdnfzhqay1rvaxehne',
+  },  {
+    url: 'https://res.cloudinary.com/ronn1230/image/upload/v1643721866/Yelp-Camp/andrew-hunt-ky3P6s_s8Xs-unsplash_fiiia5.jpg',
+    filename: 'Yelp-Camp/doqdnfzhqay1rvaxehne',
+  },  {
+    url: 'https://res.cloudinary.com/ronn1230/image/upload/v1643721866/Yelp-Camp/lex-sirikiat-oT4hTqWoZ6M-unsplash_fvz74w.jpg',
+    filename: 'Yelp-Camp/doqdnfzhqay1rvaxehne',
+  },  {
+    url: 'https://res.cloudinary.com/ronn1230/image/upload/v1643721867/Yelp-Camp/casey-horner-ydmt8IFH4Ac-unsplash_fnxsld.jpg',
+    filename: 'Yelp-Camp/doqdnfzhqay1rvaxehne',
+  },  
 ]
 
 
@@ -76,9 +98,9 @@ let seed= async()=>{
       ],
     }
     let images =[
-      imageCollection[Math.floor(Math.random() * 8)],
-      imageCollection[Math.floor(Math.random() * 8)],
-      imageCollection[Math.floor(Math.random() * 8)]
+      imageCollection[Math.floor(Math.random() * 15)],
+      imageCollection[Math.floor(Math.random() * 15)],
+      imageCollection[Math.floor(Math.random() * 15)]
     ]
     let description = 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti omnis facere dolorem consequatur nemo. Quas sit corporis autem minima a doloribus illo fugit possimus sequi! Quae laboriosam porro odio fuga?Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti omnis facere dolorem consequatur nemo. Quas sit corporis autem minima a doloribus illo fugit possimus sequi! Quae laboriosam porro odio fuga?'
    

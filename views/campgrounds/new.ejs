@@ -2,7 +2,8 @@
 
   <h1 class="display-2 text-center"> Create a new campground</h1>
   <form action="/campgrounds" method="POST" class="needs-validation" novalidate enctype="multipart/form-data">
-    <div class="container w-75 m-auto">
+    <div class="row">
+    <div class="container col-md-6 offset-md-3">
       <div class="form-group">
         <label for="name" class=>Name of the Campground</label>
         <input type="text" class="form-control" id="name" name="Campground[name]" required>
@@ -68,4 +69,5 @@
       <br>
       <button type="submit" class="btn btn-success btn-lg">Create Campground</button>
     </div>
+  </div>
   </form>

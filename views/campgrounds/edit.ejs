@@ -3,7 +3,8 @@
   </h1>
   <form action="/campgrounds/<%= campground._id %>?_method=PATCH" method="POST" class="needs-validation" novalidate
     enctype="multipart/form-data">
-    <div class="container w-75 m-auto">
+    <div class="row">
+      <div class="container col-md-6 offset-md-3">
       <div class="form-group">
         <label for="name" class=>Name of the Campground</label>
         <input type="text" class="form-control" id="name" name="Campground[name]" value="<%=campground.name %>"
@@ -75,8 +76,8 @@
 
         <div class="mb-3">
           <% campground.images.forEach( (image,i)=>{ %>
-            <img src="<%= image.thumbnail  %> " class="img-thumbnail" alt="<%= image.url  %> ">
-            <div class="custom-control custom-checkbox">
+            <img src="<%= image.thumbnail  %> " class="img-thumbnail d-flex w-50 mx-auto" alt="<%= image.url  %> ">
+            <div class="custom-control custom-checkbox form-check-inline w-50 mx-auto">
               <input type="checkbox" class="custom-control-input" id="image-<%=i%>" name="deleteImages[]"
                 value="<%= image.filename%>">
               <label class="custom-control-label" for="image-<%=i%>">Delete??</label>
@@ -87,6 +88,7 @@
 
         <br>
         <button type="submit" class="btn btn-success btn-lg">Edit Campground</button>
+      </div>
       </div>
     </div>
   </form>

@@ -8,6 +8,7 @@ console.log(loc.geometry.coordinates)
     center: loc.geometry.coordinates,
     zoom: 9 // starting zoom
   });
+  map.addControl(new mapboxgl.NavigationControl());
   const marker1 = new mapboxgl.Marker()
   .setLngLat(loc.geometry.coordinates)
   .setPopup(
@@ -24,4 +25,7 @@ console.log(loc.geometry.coordinates)
     center: [ -110.68000896069303,44.436590118210766],
     zoom: 9 // starting zoom
   });
+  map.addControl(new mapboxgl.NavigationControl());
+
+
  }
