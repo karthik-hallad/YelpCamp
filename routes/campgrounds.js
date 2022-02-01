@@ -1,17 +1,19 @@
 const express = require('express');
 const app = express();
 const router = express.Router();
-const multer  = require('multer')
-const upload = multer({ dest: 'uploads/' })
-
 
 const catchAsync = require('../utils/catchAsync');
 const ExpressError = require('../utils/ExpressError')
 const {campgroundSchema}= require('../schemas');
 
-const Campground = require('../models/campgrounds');
+const multer  = require('multer')
+const {storage} = require('../cloudinary');
+const upload = multer({storage});
+
 const {isLoggedIn,isAuthor} = require('../middleware')
 const campCont = require('../controllers/campgrounds')
+
+
 
 const campgroundValidator = (req, res, next) => {
   let result=campgroundSchema.validate(req.body);
@@ -32,10 +34,10 @@ router.get('/:id/edit',isLoggedIn,isAuthor,catchAsync(campCont.edit_form))
 
 router.delete('/:id',isLoggedIn,isAuthor,catchAsync(campCont.delete))
 
-router.patch('/:id',isLoggedIn,isAuthor,campgroundValidator,catchAsync(campCont.update))
+router.patch('/:id',isLoggedIn,upload.array('Campground[image]'),isAuthor,campgroundValidator,catchAsync(campCont.update))
 
 router.get('/:id', catchAsync(campCont.show))
 
-router.post('/',upload.single('Campground[image]'),isLoggedIn,campgroundValidator,catchAsync(campCont.create))
+router.post('/',isLoggedIn,upload.array('Campground[image]'),campgroundValidator,catchAsync(campCont.create))
 
 module.exports = router;

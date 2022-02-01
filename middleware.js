@@ -36,7 +36,6 @@ module.exports.reviewValidator = (req, res, next) => {
 module.exports.isReviewAuthor = async (req, res, next) =>{
   const {id,reviewId}=req.params;
   const review = await Review.findById(reviewId);
-  console.log(req.user)
   if(! req.user._id.equals(review.author)){
     next(new ExpressError('You do not have permission to do that',402));
   }

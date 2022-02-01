@@ -1,3 +1,8 @@
+if( process.env.NODE_ENV !== 'production'){
+  require('dotenv').config();
+}
+
+
 const express = require('express');
 const app = express();
 const PORT =3000; 
@@ -20,6 +25,7 @@ app.use(express.static(path.join(__dirname, 'public')))
 app.engine('ejs', engine);
 app.use(flash())
 
+
 main().catch(err => console.log(err));
 
 async function main() {
@@ -27,7 +33,7 @@ async function main() {
   await mongoose.connect('mongodb://localhost:27017/Yelp-Camp');
   }
   catch(e){
-    console.log("OH NO ERROR")
+    console.log(" ERROR")
   }
 }
 
@@ -66,7 +72,7 @@ app.use(function(req, res, next){
   res.locals.success = req.flash('success');
   res.locals.error = req.flash('error');
   res.locals.info = req.flash('info');
-  next();
+    next();
 })
 
 app.use('/campgrounds',campgroundsRoute);

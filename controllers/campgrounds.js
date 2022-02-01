@@ -1,5 +1,11 @@
 const { model } = require('mongoose');
+const campgrounds = require('../models/campgrounds');
 const Campground = require('../models/campgrounds')
+
+const mbxGeocoding = require('@mapbox/mapbox-sdk/services/geocoding');
+const mapBoxToken = process.env.MAPBOX_ACCESS_TOKEN;
+const geocoder = mbxGeocoding({accessToken: mapBoxToken})
+const {cloudinary} = require('../cloudinary')
 
 module.exports.index =async (req, res, next) =>{
   // need to await as fetching takes a lot of time
@@ -29,9 +35,20 @@ module.exports.delete =async (req, res) =>{
 
 module.exports.update =async (req, res) =>{
   let updated = req.body.Campground;
-  await Campground.findByIdAndUpdate({_id: req.params.id},{...updated});
+  let campground=await Campground.findByIdAndUpdate({_id: req.params.id},{...updated});
+  // map returns a array but in each iteration returns a single object
+  req.files.forEach((file,i) =>{
+    campground.images.push({url:file.path , filename:file.filename})
+  })
+  await campground.save();
+  if(req.body.deleteImages){
+    for( let filename of req.body.deleteImages){
+      await cloudinary.uploader.destroy(filename)
+    }
+    await campground.updateOne({$pull : { images : { filename : {$in:req.body.deleteImages }}}})
+  }
+  req.flash('info','Successfully updated the campground');
   res.redirect(`/campgrounds/${req.params.id}`)
-  
 }
 
 module.exports.show = async (req, res) =>{
@@ -51,12 +68,24 @@ module.exports.show = async (req, res) =>{
 
 
 module.exports.create = async (req, res) =>{
-  const body = req.body.Campground;
+  console.log(req.files)
+  let body = req.body.Campground;
   body.author = req.user._id;
   // if no body then the mongo doesnt give error it simply creates empty data
   if(!body) throw new ExpressError('Invalid Data',403)
   const campground = new Campground(body);
-  const {_id}=await campground.save(body).then((d) => d);
+  let response=await geocoder.forwardGeocode({
+    query: req.body.Campground.location,
+    limit :1
+  })
+    .send()
+  let geometry = response.body.features[0].geometry;
+  campground.geometry = geometry;
+  // forEach first arg is what it contains and second arg is the index
+  req.files.forEach((file,i) =>{
+    campground.images.push({url:file.path , filename:file.filename})
+  })
+  const {_id}=await campground.save().then((d) => d);
   req.flash('success',"Successfully created a campground")
   res.redirect(`/campgrounds/${_id}`)
 }

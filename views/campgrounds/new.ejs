@@ -40,18 +40,6 @@
         </div>
       </div>
       <div class="form-group">
-        <label for="image">Image of the campground</label>
-        <br>
-        <input type="file" name="Campground[image]" id='image'>
-        <!-- <input type="text" id="image" class="form-control" name="Campground[image]" required> -->
-        <div class="valid-feedback">
-          Looks good!
-        </div>
-        <div class="invalid-feedback">
-          Please provide a valid URL.
-        </div>
-      </div>
-      <div class="form-group">
         <label for="description">Description of the campground</label><br>
         <textarea id="description" class="form-control" name="Campground[description]" cols="50" rows="5"
           placeholder="Enter description here" required></textarea>
@@ -60,6 +48,21 @@
         </div>
         <div class="invalid-feedback">
           Please provide a valid Description.
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="image">Image of the campground</label>
+        <br>
+        <div class="custom-file form-file">
+          <input type="file" name="Campground[image]" class="custom-file-input" id="customFile" multiple>
+          <label class="custom-file-label form-file-label" name="Campground[image]" for="customFile">Choose file</label>
+        </div>
+        <!-- <input type="text" id="image" class="form-control" name="Campground[image]" required> -->
+        <div class="valid-feedback">
+          Looks good!
+        </div>
+        <div class="invalid-feedback">
+          Please provide a valid URL.
         </div>
       </div>
       <br>

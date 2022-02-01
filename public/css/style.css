@@ -1,7 +1,19 @@
-body{
-  background: color #232323;
+.carousel-item {
+  transition: -webkit-transform 0.5s ease;
+  transition: transform 0.5s ease;
+  transition: transform 0.5s ease, -webkit-transform 0.5s ease;
+  -webkit-backface-visibility: visible;
+  backface-visibility: visible;
 }
 
-h1{
-  text-align: center;
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+.item {
+   min-height: 400px; 
+
+  margin: 3px;
+  padding: 3px;
 }
