@@ -27,11 +27,6 @@ app.use(express.urlencoded({extended: true}))
 app.use(methodOverride('_method'))
 app.use(express.static(path.join(__dirname, 'public')))
 app.engine('ejs', engine);
-app.use(flash())
-app.use(mongoSanitize({
-  replaceWith : '_'
-}));
-
 
 main().catch(err => console.log(err));
 
@@ -44,41 +39,35 @@ async function main() {
   }
 }
 
-// app.use(
-//   helmet({
-//     contentSecurityPolicy: false,
-//   })
-// );
-// const {scriptSrcUrls,styleSrcUrls,connectSrcUrls,fontSrcUrls}=require('./content_policy')
-// app.use(
-//   helmet.contentSecurityPolicy({
-//       directives: {
-//           defaultSrc: [],
-//           connectSrc: ["'self'", ...connectSrcUrls],
-//           scriptSrc: ["'unsafe-inline'", "'self'", ...scriptSrcUrls],
-//           styleSrc: ["'self'", "'unsafe-inline'", ...styleSrcUrls],
-//           workerSrc: ["'self'", "blob:"],
-//           objectSrc: [],
-//           imgSrc: [
-//               "'self'",
-//               "blob:",
-//               "data:",
-//               "https://res.cloudinary.com/ronn1230/", 
-//               "https://images.unsplash.com/",
-//           ],
-//           fontSrc: ["'self'", ...fontSrcUrls],
-//       },
-//   })
-// );
 
-
+const {scriptSrcUrls,styleSrcUrls,connectSrcUrls,fontSrcUrls}=require('./content_policy')
+app.use(
+  helmet.contentSecurityPolicy({
+      directives: {
+          defaultSrc: [],
+          connectSrc: ["'self'", ...connectSrcUrls],
+          scriptSrc: ["'unsafe-inline'", "'self'", ...scriptSrcUrls],
+          styleSrc: ["'self'", "'unsafe-inline'", ...styleSrcUrls],
+          workerSrc: ["'self'", "blob:"],
+          objectSrc: [],
+          imgSrc: [
+              "'self'",
+              "blob:",
+              "data:",
+              "https://res.cloudinary.com/ronn1230/", 
+              "https://images.unsplash.com/",
+          ],
+          fontSrc: ["'self'", ...fontSrcUrls],
+      },
+  })
+);
 
 const sessionDetails = {
+  name : 'cookie',
   secret : 'thisisabadsecret',
   resave : false,
   saveUninitialized : false,
   cookie : {
-    name : 'cookie',
     expires : Date.now() + 24*7*60*60*1000,
     maxAge : 24*7*60*60*1000,
     httpOnly : true,
@@ -89,12 +78,27 @@ const sessionDetails = {
 const campgroundsRoute = require('./routes/campgrounds')
 const reviewsRoute = require('./routes/reviews')
 const userRoute = require('./routes/user')
-
 const User = require('./models/user')
 
 app.use(session(sessionDetails))
 app.use(passport.initialize());
+app.use(flash())
+app.use(mongoSanitize({
+  replaceWith : '_'
+}));
 app.use(passport.session());
+
+app.use(helmet.dnsPrefetchControl());
+app.use(helmet.expectCt());
+app.use(helmet.frameguard());
+app.use(helmet.hidePoweredBy());
+app.use(helmet.hsts());
+app.use(helmet.ieNoOpen());
+app.use(helmet.noSniff());
+app.use(helmet.originAgentCluster());
+app.use(helmet.permittedCrossDomainPolicies());
+app.use(helmet.referrerPolicy());
+app.use(helmet.xssFilter());
 
 passport.use( new LocalStrategy(User.authenticate()))
 //can have multiple strategies going at once

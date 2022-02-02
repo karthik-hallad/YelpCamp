@@ -5,8 +5,10 @@ module.exports.scriptSrcUrls = [
   "https://kit.fontawesome.com/",
   "https://cdnjs.cloudflare.com/",
   "https://cdn.jsdelivr.net",
+  "https://code.jquery.com",
 ];
 module.exports.styleSrcUrls = [
+  "https://cdn.jsdelivr.net",
   "https://kit-free.fontawesome.com/",
   "https://stackpath.bootstrapcdn.com/",
   "https://api.mapbox.com/",
